@@ -278,214 +278,32 @@ MOCK_LISTINGS = [
 ]
 
 MOCK_ASSET_AUDIT = [
-  {'AskingPrice': 1200.0,
-   'AssetID': 9988776657,
-   'FloatValue': 0.01599999999999999,
-   'ItemID': 103,
-   'LinePrice': 1200.0,
-   'ListingID': 1005,
-   'SkinName': 'Karambit | Doppler (Factory New)',
-   'TransactionID': 5001},
-  {'AskingPrice': 1180.0,
-   'AssetID': 9988776657,
-   'FloatValue': 0.01599999999999999,
-   'ItemID': 103,
-   'LinePrice': 1200.0,
-   'ListingID': 1012,
-   'SkinName': 'Karambit | Doppler (Factory New)',
-   'TransactionID': 5001},
-  {'AskingPrice': 1250.0,
-   'AssetID': 9988776657,
-   'FloatValue': 0.01599999999999999,
-   'ItemID': 103,
-   'LinePrice': 1200.0,
-   'ListingID': 1026,
-   'SkinName': 'Karambit | Doppler (Factory New)',
-   'TransactionID': 5001},
-  {'AskingPrice': 85.0,
-   'AssetID': 9988776664,
-   'FloatValue': 0.28,
-   'ItemID': 110,
-   'LinePrice': 85.0,
-   'ListingID': 1003,
-   'SkinName': 'AWP | Asiimov (Field-Tested)',
-   'TransactionID': 5002},
-  {'AskingPrice': 80.0,
-   'AssetID': 9988776664,
-   'FloatValue': 0.28,
-   'ItemID': 110,
-   'LinePrice': 85.0,
-   'ListingID': 1009,
-   'SkinName': 'AWP | Asiimov (Field-Tested)',
-   'TransactionID': 5002},
-  {'AskingPrice': 90.0,
-   'AssetID': 9988776664,
-   'FloatValue': 0.28,
-   'ItemID': 110,
-   'LinePrice': 85.0,
-   'ListingID': 1018,
-   'SkinName': 'AWP | Asiimov (Field-Tested)',
-   'TransactionID': 5002},
-  {'AskingPrice': 300.0,
-   'AssetID': 9988776659,
-   'FloatValue': 0.02011111111111111,
-   'ItemID': 105,
-   'LinePrice': 300.0,
-   'ListingID': 1014,
-   'SkinName': 'Desert Eagle | Blaze (Factory New)',
-   'TransactionID': 5003},
-  {'AskingPrice': 310.0,
-   'AssetID': 9988776659,
-   'FloatValue': 0.02011111111111111,
-   'ItemID': 105,
-   'LinePrice': 300.0,
-   'ListingID': 1020,
-   'SkinName': 'Desert Eagle | Blaze (Factory New)',
-   'TransactionID': 5003},
-  {'AskingPrice': 25.5,
-   'AssetID': 9988776663,
-   'FloatValue': 0.22,
-   'ItemID': 109,
-   'LinePrice': 25.5,
-   'ListingID': 1002,
-   'SkinName': 'AK-47 | Redline (Field-Tested)',
-   'TransactionID': 5004},
-  {'AskingPrice': 24.0,
-   'AssetID': 9988776663,
-   'FloatValue': 0.22,
-   'ItemID': 109,
-   'LinePrice': 25.5,
-   'ListingID': 1008,
-   'SkinName': 'AK-47 | Redline (Field-Tested)',
-   'TransactionID': 5004},
-  {'AskingPrice': 26.0,
-   'AssetID': 9988776663,
-   'FloatValue': 0.22,
-   'ItemID': 109,
-   'LinePrice': 25.5,
-   'ListingID': 1024,
-   'SkinName': 'AK-47 | Redline (Field-Tested)',
-   'TransactionID': 5004},
-  {'AskingPrice': 150.0,
-   'AssetID': 9988776655,
-   'FloatValue': 0.04501234567890123,
-   'ItemID': 101,
-   'LinePrice': None,
-   'ListingID': 1001,
-   'SkinName': 'AK-47 | Vulcan (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 145.0,
-   'AssetID': 9988776655,
-   'FloatValue': 0.04501234567890123,
-   'ItemID': 101,
-   'LinePrice': None,
-   'ListingID': 1010,
-   'SkinName': 'AK-47 | Vulcan (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 155.0,
-   'AssetID': 9988776655,
-   'FloatValue': 0.04501234567890123,
-   'ItemID': 101,
-   'LinePrice': None,
-   'ListingID': 1022,
-   'SkinName': 'AK-47 | Vulcan (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 3500.0,
-   'AssetID': 9988776656,
-   'FloatValue': 0.2501234567890123,
-   'ItemID': 102,
-   'LinePrice': None,
-   'ListingID': 1004,
-   'SkinName': 'AWP | Dragon Lore (Field-Tested)',
-   'TransactionID': None},
-  {'AskingPrice': 3450.0,
-   'AssetID': 9988776656,
-   'FloatValue': 0.2501234567890123,
-   'ItemID': 102,
-   'LinePrice': None,
-   'ListingID': 1011,
-   'SkinName': 'AWP | Dragon Lore (Field-Tested)',
-   'TransactionID': None},
-  {'AskingPrice': 3600.0,
-   'AssetID': 9988776656,
-   'FloatValue': 0.2501234567890123,
-   'ItemID': 102,
-   'LinePrice': None,
-   'ListingID': 1017,
-   'SkinName': 'AWP | Dragon Lore (Field-Tested)',
-   'TransactionID': None},
-  {'AskingPrice': 2500.0,
-   'AssetID': 9988776658,
-   'FloatValue': 0.11055555555555555,
-   'ItemID': 104,
-   'LinePrice': None,
-   'ListingID': 1013,
-   'SkinName': 'M4A4 | Howl (Minimal Wear)',
-   'TransactionID': None},
-  {'AskingPrice': 2400.0,
-   'AssetID': 9988776658,
-   'FloatValue': 0.11055555555555555,
-   'ItemID': 104,
-   'LinePrice': None,
-   'ListingID': 1019,
-   'SkinName': 'M4A4 | Howl (Minimal Wear)',
-   'TransactionID': None},
-  {'AskingPrice': 450.0,
-   'AssetID': 9988776660,
-   'FloatValue': 0.005,
-   'ItemID': 106,
-   'LinePrice': None,
-   'ListingID': 1015,
-   'SkinName': 'Glock-18 | Fade (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 460.0,
-   'AssetID': 9988776660,
-   'FloatValue': 0.005,
-   'ItemID': 106,
-   'LinePrice': None,
-   'ListingID': 1021,
-   'SkinName': 'Glock-18 | Fade (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 45.0,
-   'AssetID': 9988776661,
-   'FloatValue': 0.85,
-   'ItemID': 107,
-   'LinePrice': None,
-   'ListingID': 1007,
-   'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)',
-   'TransactionID': None},
-  {'AskingPrice': 42.0,
-   'AssetID': 9988776661,
-   'FloatValue': 0.85,
-   'ItemID': 107,
-   'LinePrice': None,
-   'ListingID': 1025,
-   'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)',
-   'TransactionID': None},
-  {'AskingPrice': 2100.0,
-   'AssetID': 9988776662,
-   'FloatValue': 0.03,
-   'ItemID': 108,
-   'LinePrice': None,
-   'ListingID': 1006,
-   'SkinName': 'Butterfly Knife | Fade (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 2050.0,
-   'AssetID': 9988776662,
-   'FloatValue': 0.03,
-   'ItemID': 108,
-   'LinePrice': None,
-   'ListingID': 1016,
-   'SkinName': 'Butterfly Knife | Fade (Factory New)',
-   'TransactionID': None},
-  {'AskingPrice': 2150.0,
-   'AssetID': 9988776662,
-   'FloatValue': 0.03,
-   'ItemID': 108,
-   'LinePrice': None,
-   'ListingID': 1023,
-   'SkinName': 'Butterfly Knife | Fade (Factory New)',
-   'TransactionID': None}
+  {'ItemID': 101, 'AssetID': 9988776655, 'SkinName': 'AK-47 | Vulcan (Factory New)', 'FloatValue': 0.04501234567890123, 'ListingID': 1001, 'AskingPrice': 150.0, 'TransactionID': 5005, 'LinePrice': 150.0},
+  {'ItemID': 101, 'AssetID': 9988776655, 'SkinName': 'AK-47 | Vulcan (Factory New)', 'FloatValue': 0.04501234567890123, 'ListingID': 1010, 'AskingPrice': 145.0, 'TransactionID': 5005, 'LinePrice': 150.0},
+  {'ItemID': 101, 'AssetID': 9988776655, 'SkinName': 'AK-47 | Vulcan (Factory New)', 'FloatValue': 0.04501234567890123, 'ListingID': 1022, 'AskingPrice': 155.0, 'TransactionID': 5005, 'LinePrice': 150.0},
+  {'ItemID': 102, 'AssetID': 9988776656, 'SkinName': 'AWP | Dragon Lore (Field-Tested)', 'FloatValue': 0.2501234567890123, 'ListingID': 1004, 'AskingPrice': 3500.0, 'TransactionID': 5006, 'LinePrice': 3500.0},
+  {'ItemID': 102, 'AssetID': 9988776656, 'SkinName': 'AWP | Dragon Lore (Field-Tested)', 'FloatValue': 0.2501234567890123, 'ListingID': 1011, 'AskingPrice': 3450.0, 'TransactionID': 5006, 'LinePrice': 3500.0},
+  {'ItemID': 102, 'AssetID': 9988776656, 'SkinName': 'AWP | Dragon Lore (Field-Tested)', 'FloatValue': 0.2501234567890123, 'ListingID': 1017, 'AskingPrice': 3600.0, 'TransactionID': 5006, 'LinePrice': 3500.0},
+  {'ItemID': 103, 'AssetID': 9988776657, 'SkinName': 'Karambit | Doppler (Factory New)', 'FloatValue': 0.01599999999999999, 'ListingID': 1005, 'AskingPrice': 1200.0, 'TransactionID': 5001, 'LinePrice': 1200.0},
+  {'ItemID': 103, 'AssetID': 9988776657, 'SkinName': 'Karambit | Doppler (Factory New)', 'FloatValue': 0.01599999999999999, 'ListingID': 1012, 'AskingPrice': 1180.0, 'TransactionID': 5001, 'LinePrice': 1200.0},
+  {'ItemID': 103, 'AssetID': 9988776657, 'SkinName': 'Karambit | Doppler (Factory New)', 'FloatValue': 0.01599999999999999, 'ListingID': 1026, 'AskingPrice': 1250.0, 'TransactionID': 5001, 'LinePrice': 1200.0},
+  {'ItemID': 104, 'AssetID': 9988776658, 'SkinName': 'M4A4 | Howl (Minimal Wear)', 'FloatValue': 0.11055555555555555, 'ListingID': 1013, 'AskingPrice': 2500.0, 'TransactionID': 5007, 'LinePrice': 2400.0},
+  {'ItemID': 104, 'AssetID': 9988776658, 'SkinName': 'M4A4 | Howl (Minimal Wear)', 'FloatValue': 0.11055555555555555, 'ListingID': 1019, 'AskingPrice': 2400.0, 'TransactionID': 5007, 'LinePrice': 2400.0},
+  {'ItemID': 105, 'AssetID': 9988776659, 'SkinName': 'Desert Eagle | Blaze (Factory New)', 'FloatValue': 0.02011111111111111, 'ListingID': 1014, 'AskingPrice': 300.0, 'TransactionID': 5003, 'LinePrice': 300.0},
+  {'ItemID': 105, 'AssetID': 9988776659, 'SkinName': 'Desert Eagle | Blaze (Factory New)', 'FloatValue': 0.02011111111111111, 'ListingID': 1020, 'AskingPrice': 310.0, 'TransactionID': 5003, 'LinePrice': 300.0},
+  {'ItemID': 106, 'AssetID': 9988776660, 'SkinName': 'Glock-18 | Fade (Factory New)', 'FloatValue': 0.005, 'ListingID': 1015, 'AskingPrice': 450.0, 'TransactionID': 5008, 'LinePrice': 450.0},
+  {'ItemID': 106, 'AssetID': 9988776660, 'SkinName': 'Glock-18 | Fade (Factory New)', 'FloatValue': 0.005, 'ListingID': 1021, 'AskingPrice': 460.0, 'TransactionID': 5008, 'LinePrice': 450.0},
+  {'ItemID': 107, 'AssetID': 9988776661, 'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)', 'FloatValue': 0.85, 'ListingID': 1007, 'AskingPrice': 45.0, 'TransactionID': 5009, 'LinePrice': 42.0},
+  {'ItemID': 107, 'AssetID': 9988776661, 'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)', 'FloatValue': 0.85, 'ListingID': 1025, 'AskingPrice': 42.0, 'TransactionID': 5009, 'LinePrice': 42.0},
+  {'ItemID': 108, 'AssetID': 9988776662, 'SkinName': 'Butterfly Knife | Fade (Factory New)', 'FloatValue': 0.03, 'ListingID': 1006, 'AskingPrice': 2100.0, 'TransactionID': 5010, 'LinePrice': 2100.0},
+  {'ItemID': 108, 'AssetID': 9988776662, 'SkinName': 'Butterfly Knife | Fade (Factory New)', 'FloatValue': 0.03, 'ListingID': 1016, 'AskingPrice': 2050.0, 'TransactionID': 5010, 'LinePrice': 2100.0},
+  {'ItemID': 108, 'AssetID': 9988776662, 'SkinName': 'Butterfly Knife | Fade (Factory New)', 'FloatValue': 0.03, 'ListingID': 1023, 'AskingPrice': 2150.0, 'TransactionID': 5010, 'LinePrice': 2100.0},
+  {'ItemID': 109, 'AssetID': 9988776663, 'SkinName': 'AK-47 | Redline (Field-Tested)', 'FloatValue': 0.22, 'ListingID': 1002, 'AskingPrice': 25.5, 'TransactionID': 5004, 'LinePrice': 25.5},
+  {'ItemID': 109, 'AssetID': 9988776663, 'SkinName': 'AK-47 | Redline (Field-Tested)', 'FloatValue': 0.22, 'ListingID': 1008, 'AskingPrice': 24.0, 'TransactionID': 5004, 'LinePrice': 25.5},
+  {'ItemID': 109, 'AssetID': 9988776663, 'SkinName': 'AK-47 | Redline (Field-Tested)', 'FloatValue': 0.22, 'ListingID': 1024, 'AskingPrice': 26.0, 'TransactionID': 5004, 'LinePrice': 25.5},
+  {'ItemID': 110, 'AssetID': 9988776664, 'SkinName': 'AWP | Asiimov (Field-Tested)', 'FloatValue': 0.28, 'ListingID': 1003, 'AskingPrice': 85.0, 'TransactionID': 5002, 'LinePrice': 85.0},
+  {'ItemID': 110, 'AssetID': 9988776664, 'SkinName': 'AWP | Asiimov (Field-Tested)', 'FloatValue': 0.28, 'ListingID': 1009, 'AskingPrice': 80.0, 'TransactionID': 5002, 'LinePrice': 85.0},
+  {'ItemID': 110, 'AssetID': 9988776664, 'SkinName': 'AWP | Asiimov (Field-Tested)', 'FloatValue': 0.28, 'ListingID': 1018, 'AskingPrice': 90.0, 'TransactionID': 5002, 'LinePrice': 85.0}
 ]
 
 MOCK_TRANSACTIONS = [
@@ -520,6 +338,54 @@ MOCK_TRANSACTIONS = [
         'SkinName': 'AK-47 | Redline (Field-Tested)',
         'TimeCompleted': '2026-05-20 23:33:54',
         'TransactionID': 5004
+    },
+    {
+        'AssetID': 9988776655,
+        'BuyerName': 'Rad_atouille',
+        'LinePrice': 150.0,
+        'SkinName': 'AK-47 | Vulcan (Factory New)',
+        'TimeCompleted': '2026-05-22 14:20:10',
+        'TransactionID': 5005
+    },
+    {
+        'AssetID': 9988776656,
+        'BuyerName': 'JYniuBi',
+        'LinePrice': 3500.0,
+        'SkinName': 'AWP | Dragon Lore (Field-Tested)',
+        'TimeCompleted': '2026-05-23 09:45:33',
+        'TransactionID': 5006
+    },
+    {
+        'AssetID': 9988776658,
+        'BuyerName': 'car',
+        'LinePrice': 2400.0,
+        'SkinName': 'M4A4 | Howl (Minimal Wear)',
+        'TimeCompleted': '2026-05-24 17:12:05',
+        'TransactionID': 5007
+    },
+    {
+        'AssetID': 9988776660,
+        'BuyerName': 'IcEMaN',
+        'LinePrice': 450.0,
+        'SkinName': 'Glock-18 | Fade (Factory New)',
+        'TimeCompleted': '2026-05-25 11:30:22',
+        'TransactionID': 5008
+    },
+    {
+        'AssetID': 9988776661,
+        'BuyerName': 'potsu_420',
+        'LinePrice': 42.0,
+        'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)',
+        'TimeCompleted': '2026-05-26 20:55:18',
+        'TransactionID': 5009
+    },
+    {
+        'AssetID': 9988776662,
+        'BuyerName': 'Rad_atouille',
+        'LinePrice': 2100.0,
+        'SkinName': 'Butterfly Knife | Fade (Factory New)',
+        'TimeCompleted': '2026-05-27 08:10:45',
+        'TransactionID': 5010
     }
 ]
 
@@ -800,9 +666,7 @@ else:
 
 st.sidebar.info(f"Current Access Level: **{role if admin_authenticated else 'Unauthenticated'}**")
 
-# Helper function to render Report 1 (Active Listings Catalog)
 def render_report_1():
-    st.subheader("Report 1: Active Listings Catalog")
     st.write("This report compiles real-time extraction across all three data representations simultaneously (structured tables, JSON stickers, and local screenshot imagery files).")
     st.write("---")
 
@@ -887,115 +751,13 @@ elif role == "Admin Mode":
         
         # Let admin select between the three reports
         admin_tab = st.selectbox("Select Report Module:", [
-            "Report 1: System Asset Valuation & Pricing Volatility Audit",
             "Report 2: Completed Transactions Ledger",
             "Report 3: Trader Performance & Volumetric Analysis"
         ])
         st.write("---")
-        
-        # -------------------- REPORT 1: SYSTEM ASSET VALUATION & PRICING VOLATILITY AUDIT --------------------
-        if admin_tab == "Report 1: System Asset Valuation & Pricing Volatility Audit":
-            st.subheader("Report 1: System Asset Valuation & Pricing Volatility Audit")
-            st.write("This report compiles registered skin items, merging active market listings with historic transactions to audit variance between asking prices and sold prices.")
-            
-            df_audit = pd.DataFrame()
-            if use_mock:
-                df_audit = pd.DataFrame(MOCK_ASSET_AUDIT)
-            else:
-                try:
-                    conn = get_db_connection()
-                    audit_query = """
-                        SELECT 
-                            s.ItemID, 
-                            s.AssetID, 
-                            s.SkinName, 
-                            s.FloatValue,
-                            l.ListingID,
-                            l.AskingPrice,
-                            ti.TransactionID,
-                            ti.LinePrice
-                        FROM SkinItem s
-                        LEFT JOIN TradeListing l ON s.ItemID = l.ItemID
-                        LEFT JOIN TransactionItem ti ON s.ItemID = ti.ItemID;
-                    """
-                    df_audit = pd.read_sql(audit_query, conn)
-                    conn.close()
-                except Exception as e:
-                    st.error(f"Error compiling asset valuation reports: {e}")
-                    df_audit = pd.DataFrame()
-
-            if not df_audit.empty:
-                # Type conversions
-                df_audit['AssetID'] = df_audit['AssetID'].astype(str)
-                df_audit['FloatValue'] = df_audit['FloatValue'].astype(float)
-                df_audit['AskingPrice'] = df_audit['AskingPrice'].astype(float)
-                df_audit['LinePrice'] = df_audit['LinePrice'].astype(float)
-                
-                # Hybrid integration details
-                df_audit['Custom Nametag'] = df_audit['AssetID'].apply(
-                    lambda x: json_store.get(x, {}).get('custom_nametag', 'None')
-                )
-                df_audit['Sticker Count'] = df_audit['AssetID'].apply(
-                    lambda x: len(json_store.get(x, {}).get('stickers', []))
-                )
-                df_audit['Screenshot Status'] = df_audit['AssetID'].apply(
-                    lambda x: "Present" if os.path.exists(f"data_store/screenshots/{x}.png") else "Missing"
-                )
-                
-                # Compute Price Volatility / Markup: (AskingPrice - LinePrice) / LinePrice
-                def compute_variance(row):
-                    if pd.isna(row['AskingPrice']) or pd.isna(row['LinePrice']) or row['LinePrice'] == 0:
-                        return "N/A"
-                    var = ((row['AskingPrice'] - row['LinePrice']) / row['LinePrice']) * 100
-                    return f"{var:+.1f}%"
-                
-                df_audit['Price Variance'] = df_audit.apply(compute_variance, axis=1)
-
-                # Format display columns
-                df_audit['Asking Price'] = df_audit['AskingPrice'].apply(lambda x: f"RM {x:,.2f}" if not pd.isna(x) else "Not Listed")
-                df_audit['Sold Price'] = df_audit['LinePrice'].apply(lambda x: f"RM {x:,.2f}" if not pd.isna(x) else "Not Sold")
-
-                # Controls
-                st.write("#### Report Controls")
-                col_ctrl1, col_ctrl2 = st.columns(2)
-                with col_ctrl1:
-                    wear_filter = st.slider("Filter by maximum item wear float value:", 0.0, 1.0, 1.0)
-                with col_ctrl2:
-                    sort_order = st.selectbox("Sort records by:", ["Skin Name", "Asking Price (High-Low)", "Wear Float (Low-High)"])
-
-                # Filter
-                filtered_df = df_audit[df_audit['FloatValue'] <= wear_filter]
-                
-                # Sort
-                if sort_order == "Skin Name":
-                    filtered_df = filtered_df.sort_values(by="SkinName")
-                elif sort_order == "Asking Price (High-Low)":
-                    filtered_df = filtered_df.sort_values(by="AskingPrice", ascending=False, na_position='last')
-                elif sort_order == "Wear Float (Low-High)":
-                    filtered_df = filtered_df.sort_values(by="FloatValue")
-
-                # Columns for display
-                display_cols = [
-                    'SkinName', 'AssetID', 'FloatValue', 'Asking Price', 'Sold Price', 
-                    'Price Variance', 'Custom Nametag', 'Sticker Count', 'Screenshot Status'
-                ]
-                
-                st.write("#### System Asset Audit Ledger")
-                st.dataframe(filtered_df[display_cols], use_container_width=True)
-
-                # CSV Download
-                csv_bytes = filtered_df[display_cols].to_csv(index=False).encode('utf-8')
-                st.download_button(
-                    label="📥 Export Valuation Report to CSV Format",
-                    data=csv_bytes,
-                    file_name="cs_nexus_asset_valuation_report.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.info("No system assets to audit yet.")
             
         # -------------------- REPORT 2: COMPLETED TRANSACTIONS LEDGER --------------------
-        elif admin_tab == "Report 2: Completed Transactions Ledger":
+        if admin_tab == "Report 2: Completed Transactions Ledger":
             st.subheader("Report 2: Completed Transactions Ledger")
             st.write("This report compiles structured transaction tables enriched dynamically with semi-structured nametag modifications and unstructured screenshot availability audits.")
             
