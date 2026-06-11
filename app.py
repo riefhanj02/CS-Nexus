@@ -12,10 +12,10 @@ st.set_page_config(page_title="CS-Nexus Hybrid Data System", layout="wide", page
 # ==========================================================================
 
 st.sidebar.title("🔌 Database Settings")
-db_host = st.sidebar.text_input("MySQL Host", value="localhost")
+db_host = st.sidebar.text_input("MySQL Host", value="127.0.0.1")
 db_user = st.sidebar.text_input("Username", value="root")
-db_pass = st.sidebar.text_input("Password", value="yourpassword", type="password")
-db_name = st.sidebar.text_input("Database Name", value="CS_Nexus")
+db_pass = st.sidebar.text_input("Password", value="", type="password")
+db_name = st.sidebar.text_input("Database Name", value="cs_nexus")
 
 def get_db_connection():
     """Establish connection to local MySQL database."""
@@ -42,100 +42,510 @@ def load_json_data():
 
 MOCK_LISTINGS = [
     {
-        "ListingID": 101,
-        "Username": "ZywOo",
-        "ItemID": 1,
-        "AssetID": 12345678901234567,
-        "SkinName": "AWP | Dragon Lore",
-        "FloatValue": 0.08215,
-        "AskingPrice": 8500.00
+        'AskingPrice': 150.0,
+        'AssetID': 9988776655,
+        'FloatValue': 0.04501234567890123,
+        'ItemID': 101,
+        'ListingID': 1001,
+        'SkinName': 'AK-47 | Vulcan (Factory New)',
+        'Username': 'car'
     },
     {
-        "ListingID": 102,
-        "Username": "S1mple",
-        "ItemID": 2,
-        "AssetID": 98765432109876543,
-        "SkinName": "AK-47 | The Empress",
-        "FloatValue": 0.02142,
-        "AskingPrice": 120.00
+        'AskingPrice': 25.5,
+        'AssetID': 9988776663,
+        'FloatValue': 0.22,
+        'ItemID': 109,
+        'ListingID': 1002,
+        'SkinName': 'AK-47 | Redline (Field-Tested)',
+        'Username': 'car'
     },
     {
-        "ListingID": 103,
-        "Username": "Dev1ce",
-        "ItemID": 3,
-        "AssetID": 11112222333344445,
-        "SkinName": "Butterfly Knife | Fade",
-        "FloatValue": 0.03451,
-        "AskingPrice": 2100.00
+        'AskingPrice': 85.0,
+        'AssetID': 9988776664,
+        'FloatValue': 0.28,
+        'ItemID': 110,
+        'ListingID': 1003,
+        'SkinName': 'AWP | Asiimov (Field-Tested)',
+        'Username': 'car'
+    },
+    {
+        'AskingPrice': 2400.0,
+        'AssetID': 9988776658,
+        'FloatValue': 0.11055555555555555,
+        'ItemID': 104,
+        'ListingID': 1019,
+        'SkinName': 'M4A4 | Howl (Minimal Wear)',
+        'Username': 'car'
+    },
+    {
+        'AskingPrice': 2150.0,
+        'AssetID': 9988776662,
+        'FloatValue': 0.03,
+        'ItemID': 108,
+        'ListingID': 1023,
+        'SkinName': 'Butterfly Knife | Fade (Factory New)',
+        'Username': 'car'
+    },
+    {
+        'AskingPrice': 3500.0,
+        'AssetID': 9988776656,
+        'FloatValue': 0.2501234567890123,
+        'ItemID': 102,
+        'ListingID': 1004,
+        'SkinName': 'AWP | Dragon Lore (Field-Tested)',
+        'Username': 'potsu_420'
+    },
+    {
+        'AskingPrice': 1200.0,
+        'AssetID': 9988776657,
+        'FloatValue': 0.01599999999999999,
+        'ItemID': 103,
+        'ListingID': 1005,
+        'SkinName': 'Karambit | Doppler (Factory New)',
+        'Username': 'potsu_420'
+    },
+    {
+        'AskingPrice': 2100.0,
+        'AssetID': 9988776662,
+        'FloatValue': 0.03,
+        'ItemID': 108,
+        'ListingID': 1006,
+        'SkinName': 'Butterfly Knife | Fade (Factory New)',
+        'Username': 'potsu_420'
+    },
+    {
+        'AskingPrice': 310.0,
+        'AssetID': 9988776659,
+        'FloatValue': 0.02011111111111111,
+        'ItemID': 105,
+        'ListingID': 1020,
+        'SkinName': 'Desert Eagle | Blaze (Factory New)',
+        'Username': 'potsu_420'
+    },
+    {
+        'AskingPrice': 26.0,
+        'AssetID': 9988776663,
+        'FloatValue': 0.22,
+        'ItemID': 109,
+        'ListingID': 1024,
+        'SkinName': 'AK-47 | Redline (Field-Tested)',
+        'Username': 'potsu_420'
+    },
+    {
+        'AskingPrice': 45.0,
+        'AssetID': 9988776661,
+        'FloatValue': 0.85,
+        'ItemID': 107,
+        'ListingID': 1007,
+        'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)',
+        'Username': 'JYniuBi'
+    },
+    {
+        'AskingPrice': 24.0,
+        'AssetID': 9988776663,
+        'FloatValue': 0.22,
+        'ItemID': 109,
+        'ListingID': 1008,
+        'SkinName': 'AK-47 | Redline (Field-Tested)',
+        'Username': 'JYniuBi'
+    },
+    {
+        'AskingPrice': 80.0,
+        'AssetID': 9988776664,
+        'FloatValue': 0.28,
+        'ItemID': 110,
+        'ListingID': 1009,
+        'SkinName': 'AWP | Asiimov (Field-Tested)',
+        'Username': 'JYniuBi'
+    },
+    {
+        'AskingPrice': 460.0,
+        'AssetID': 9988776660,
+        'FloatValue': 0.005,
+        'ItemID': 106,
+        'ListingID': 1021,
+        'SkinName': 'Glock-18 | Fade (Factory New)',
+        'Username': 'JYniuBi'
+    },
+    {
+        'AskingPrice': 145.0,
+        'AssetID': 9988776655,
+        'FloatValue': 0.04501234567890123,
+        'ItemID': 101,
+        'ListingID': 1010,
+        'SkinName': 'AK-47 | Vulcan (Factory New)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 3450.0,
+        'AssetID': 9988776656,
+        'FloatValue': 0.2501234567890123,
+        'ItemID': 102,
+        'ListingID': 1011,
+        'SkinName': 'AWP | Dragon Lore (Field-Tested)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 1180.0,
+        'AssetID': 9988776657,
+        'FloatValue': 0.01599999999999999,
+        'ItemID': 103,
+        'ListingID': 1012,
+        'SkinName': 'Karambit | Doppler (Factory New)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 2500.0,
+        'AssetID': 9988776658,
+        'FloatValue': 0.11055555555555555,
+        'ItemID': 104,
+        'ListingID': 1013,
+        'SkinName': 'M4A4 | Howl (Minimal Wear)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 300.0,
+        'AssetID': 9988776659,
+        'FloatValue': 0.02011111111111111,
+        'ItemID': 105,
+        'ListingID': 1014,
+        'SkinName': 'Desert Eagle | Blaze (Factory New)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 450.0,
+        'AssetID': 9988776660,
+        'FloatValue': 0.005,
+        'ItemID': 106,
+        'ListingID': 1015,
+        'SkinName': 'Glock-18 | Fade (Factory New)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 2050.0,
+        'AssetID': 9988776662,
+        'FloatValue': 0.03,
+        'ItemID': 108,
+        'ListingID': 1016,
+        'SkinName': 'Butterfly Knife | Fade (Factory New)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 42.0,
+        'AssetID': 9988776661,
+        'FloatValue': 0.85,
+        'ItemID': 107,
+        'ListingID': 1025,
+        'SkinName': 'USP-S | Kill Confirmed (Battle-Scarred)',
+        'Username': 'Rad_atouille'
+    },
+    {
+        'AskingPrice': 3600.0,
+        'AssetID': 9988776656,
+        'FloatValue': 0.2501234567890123,
+        'ItemID': 102,
+        'ListingID': 1017,
+        'SkinName': 'AWP | Dragon Lore (Field-Tested)',
+        'Username': 'IcEMaN'
+    },
+    {
+        'AskingPrice': 90.0,
+        'AssetID': 9988776664,
+        'FloatValue': 0.28,
+        'ItemID': 110,
+        'ListingID': 1018,
+        'SkinName': 'AWP | Asiimov (Field-Tested)',
+        'Username': 'IcEMaN'
+    },
+    {
+        'AskingPrice': 155.0,
+        'AssetID': 9988776655,
+        'FloatValue': 0.04501234567890123,
+        'ItemID': 101,
+        'ListingID': 1022,
+        'SkinName': 'AK-47 | Vulcan (Factory New)',
+        'Username': 'IcEMaN'
+    },
+    {
+        'AskingPrice': 1250.0,
+        'AssetID': 9988776657,
+        'FloatValue': 0.01599999999999999,
+        'ItemID': 103,
+        'ListingID': 1026,
+        'SkinName': 'Karambit | Doppler (Factory New)',
+        'Username': 'IcEMaN'
     }
 ]
 
 MOCK_TRANSACTIONS = [
     {
-        "TransactionID": 501,
-        "BuyerName": "Dev1ce",
-        "ItemID": 1,
-        "AssetID": 12345678901234567,
-        "SkinName": "AWP | Dragon Lore",
-        "LinePrice": 8500.00,
-        "TimeCompleted": "2026-06-05 14:32:00"
+        'AssetID': 9988776657,
+        'BuyerName': 'car',
+        'LinePrice': 1200.0,
+        'SkinName': 'Karambit | Doppler (Factory New)',
+        'TimeCompleted': '2026-05-20 23:33:54',
+        'TransactionID': 5001
     },
     {
-        "TransactionID": 502,
-        "BuyerName": "Ropz",
-        "ItemID": 2,
-        "AssetID": 98765432109876543,
-        "SkinName": "AK-47 | The Empress",
-        "LinePrice": 120.00,
-        "TimeCompleted": "2026-06-06 09:15:00"
+        'AssetID': 9988776664,
+        'BuyerName': 'potsu_420',
+        'LinePrice': 85.0,
+        'SkinName': 'AWP | Asiimov (Field-Tested)',
+        'TimeCompleted': '2026-05-20 23:33:54',
+        'TransactionID': 5002
     },
     {
-        "TransactionID": 503,
-        "BuyerName": "ZywOo",
-        "ItemID": 3,
-        "AssetID": 11112222333344445,
-        "SkinName": "Butterfly Knife | Fade",
-        "LinePrice": 2100.00,
-        "TimeCompleted": "2026-06-06 12:45:00"
+        'AssetID': 9988776659,
+        'BuyerName': 'JYniuBi',
+        'LinePrice': 300.0,
+        'SkinName': 'Desert Eagle | Blaze (Factory New)',
+        'TimeCompleted': '2026-05-20 23:33:54',
+        'TransactionID': 5003
+    },
+    {
+        'AssetID': 9988776663,
+        'BuyerName': 'IcEMaN',
+        'LinePrice': 25.5,
+        'SkinName': 'AK-47 | Redline (Field-Tested)',
+        'TimeCompleted': '2026-05-20 23:33:54',
+        'TransactionID': 5004
     }
 ]
 
 MOCK_TRADERS = [
     {
-        "TraderID": 1,
-        "Username": "ZywOo",
-        "SteamID64": 76561198000000001,
-        "TotalTrades": 24,
-        "LastActive": "2026-06-05",
-        "ActiveListings": 1,
-        "AssetID": 12345678901234567
+        'ActiveListings': 1,
+        'AssetID': 9988776655,
+        'LastActive': '2026-05-18',
+        'SteamID64': 76561198200000001,
+        'TotalTrades': 15,
+        'TraderID': 1,
+        'Username': 'car'
     },
     {
-        "TraderID": 2,
-        "Username": "S1mple",
-        "SteamID64": 76561198000000002,
-        "TotalTrades": 45,
-        "LastActive": "2026-06-06",
-        "ActiveListings": 1,
-        "AssetID": 98765432109876543
+        'ActiveListings': 1,
+        'AssetID': 9988776658,
+        'LastActive': '2026-05-18',
+        'SteamID64': 76561198200000001,
+        'TotalTrades': 15,
+        'TraderID': 1,
+        'Username': 'car'
     },
     {
-        "TraderID": 3,
-        "Username": "Dev1ce",
-        "SteamID64": 76561198000000003,
-        "TotalTrades": 12,
-        "LastActive": "2026-06-03",
-        "ActiveListings": 1,
-        "AssetID": 11112222333344445
+        'ActiveListings': 1,
+        'AssetID': 9988776662,
+        'LastActive': '2026-05-18',
+        'SteamID64': 76561198200000001,
+        'TotalTrades': 15,
+        'TraderID': 1,
+        'Username': 'car'
     },
     {
-        "TraderID": 4,
-        "Username": "Ropz",
-        "SteamID64": 76561198000000004,
-        "TotalTrades": 8,
-        "LastActive": "2026-06-06",
-        "ActiveListings": 0,
-        "AssetID": None
+        'ActiveListings': 1,
+        'AssetID': 9988776663,
+        'LastActive': '2026-05-18',
+        'SteamID64': 76561198200000001,
+        'TotalTrades': 15,
+        'TraderID': 1,
+        'Username': 'car'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776664,
+        'LastActive': '2026-05-18',
+        'SteamID64': 76561198200000001,
+        'TotalTrades': 15,
+        'TraderID': 1,
+        'Username': 'car'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776656,
+        'LastActive': '2026-05-19',
+        'SteamID64': 76561198000320002,
+        'TotalTrades': 42,
+        'TraderID': 2,
+        'Username': 'potsu_420'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776657,
+        'LastActive': '2026-05-19',
+        'SteamID64': 76561198000320002,
+        'TotalTrades': 42,
+        'TraderID': 2,
+        'Username': 'potsu_420'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776659,
+        'LastActive': '2026-05-19',
+        'SteamID64': 76561198000320002,
+        'TotalTrades': 42,
+        'TraderID': 2,
+        'Username': 'potsu_420'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776662,
+        'LastActive': '2026-05-19',
+        'SteamID64': 76561198000320002,
+        'TotalTrades': 42,
+        'TraderID': 2,
+        'Username': 'potsu_420'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776663,
+        'LastActive': '2026-05-19',
+        'SteamID64': 76561198000320002,
+        'TotalTrades': 42,
+        'TraderID': 2,
+        'Username': 'potsu_420'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776660,
+        'LastActive': '2026-05-10',
+        'SteamID64': 76561198004500003,
+        'TotalTrades': 5,
+        'TraderID': 3,
+        'Username': 'JYniuBi'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776661,
+        'LastActive': '2026-05-10',
+        'SteamID64': 76561198004500003,
+        'TotalTrades': 5,
+        'TraderID': 3,
+        'Username': 'JYniuBi'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776663,
+        'LastActive': '2026-05-10',
+        'SteamID64': 76561198004500003,
+        'TotalTrades': 5,
+        'TraderID': 3,
+        'Username': 'JYniuBi'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776664,
+        'LastActive': '2026-05-10',
+        'SteamID64': 76561198004500003,
+        'TotalTrades': 5,
+        'TraderID': 3,
+        'Username': 'JYniuBi'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776655,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776656,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776657,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776658,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776659,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776660,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776661,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776662,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198400000004,
+        'TotalTrades': 1250,
+        'TraderID': 4,
+        'Username': 'Rad_atouille'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776655,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198000066005,
+        'TotalTrades': 22,
+        'TraderID': 5,
+        'Username': 'IcEMaN'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776656,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198000066005,
+        'TotalTrades': 22,
+        'TraderID': 5,
+        'Username': 'IcEMaN'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776657,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198000066005,
+        'TotalTrades': 22,
+        'TraderID': 5,
+        'Username': 'IcEMaN'
+    },
+    {
+        'ActiveListings': 1,
+        'AssetID': 9988776664,
+        'LastActive': '2026-05-20',
+        'SteamID64': 76561198000066005,
+        'TotalTrades': 22,
+        'TraderID': 5,
+        'Username': 'IcEMaN'
     }
 ]
 

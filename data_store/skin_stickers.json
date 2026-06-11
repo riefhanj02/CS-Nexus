@@ -1,13 +1,55 @@
 {
-  "12345678901234567": {
+  "9988776655": {
     "stickers": [
       {"name": "Titan | Katowice 2014", "wear": 0.05, "value_usd": 4500.00},
-      {"name": "iBUYPOWER | Katowice 2014", "wear": 0.02, "value_usd": 5000.00}
+      {"name": "Team LDLC | Katowice 2014", "wear": 0.12, "value_usd": 3500.00}
     ],
-    "custom_nametag": "Magic Stick"
+    "custom_nametag": "Vulcan Prime"
   },
-  "98765432109876543": {
+  "9988776656": {
+    "stickers": [
+      {"name": "iBUYPOWER | Katowice 2014", "wear": 0.02, "value_usd": 5000.00},
+      {"name": "Natus Vincere | Katowice 2014", "wear": 0.07, "value_usd": 4200.00}
+    ],
+    "custom_nametag": "Dragon Flame"
+  },
+  "9988776657": {
+    "stickers": [],
+    "custom_nametag": "Doppler Black"
+  },
+  "9988776658": {
+    "stickers": [
+      {"name": "Howling Dawn", "wear": 0.00, "value_usd": 800.00}
+    ],
+    "custom_nametag": "Alpha Howl"
+  },
+  "9988776659": {
+    "stickers": [],
+    "custom_nametag": "Blazing Fire"
+  },
+  "9988776660": {
+    "stickers": [],
+    "custom_nametag": "Rainbow Fade"
+  },
+  "9988776661": {
     "stickers": [],
     "custom_nametag": "None"
+  },
+  "9988776662": {
+    "stickers": [],
+    "custom_nametag": "None"
+  },
+  "9988776663": {
+    "stickers": [
+      {"name": "LGB eSports | Katowice 2015", "wear": 0.10, "value_usd": 150.00},
+      {"name": "LGB eSports | Katowice 2015", "wear": 0.10, "value_usd": 150.00}
+    ],
+    "custom_nametag": "Redline Shift"
+  },
+  "9988776664": {
+    "stickers": [
+      {"name": "Asiimov Foil", "wear": 0.00, "value_usd": 90.00}
+    ],
+    "custom_nametag": "Sci-Fi Sniper"
   }
 }
