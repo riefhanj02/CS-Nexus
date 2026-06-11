@@ -1,0 +1,13 @@
+{
+  "12345678901234567": {
+    "stickers": [
+      {"name": "Titan | Katowice 2014", "wear": 0.05, "value_usd": 4500.00},
+      {"name": "iBUYPOWER | Katowice 2014", "wear": 0.02, "value_usd": 5000.00}
+    ],
+    "custom_nametag": "Magic Stick"
+  },
+  "98765432109876543": {
+    "stickers": [],
+    "custom_nametag": "None"
+  }
+}
