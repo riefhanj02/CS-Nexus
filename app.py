@@ -12,10 +12,10 @@ st.set_page_config(page_title="CS-Nexus Hybrid Data System", layout="wide", page
 # ==========================================================================
 
 st.sidebar.title("🔌 Database Settings")
-db_host = st.sidebar.text_input("MySQL Host", value="127.0.0.1")
+db_host = st.sidebar.text_input("MySQL Host", value="localhost")
 db_user = st.sidebar.text_input("Username", value="root")
-db_pass = st.sidebar.text_input("Password", value="", type="password")
-db_name = st.sidebar.text_input("Database Name", value="cs_nexus")
+db_pass = st.sidebar.text_input("Password", value="yourpassword", type="password")
+db_name = st.sidebar.text_input("Database Name", value="CS_Nexus")
 
 def get_db_connection():
     """Establish connection to local MySQL database."""
@@ -195,19 +195,19 @@ if role == "User Mode":
             conn = get_db_connection()
             cursor = conn.cursor(dictionary=True)
             
-            # Structured component: joining 3 entities (tradelisting, trader, skinitem)
+            # Structured component: joining 3 entities (TradeListing, Trader, SkinItem)
             query = """
                 SELECT l.ListingID, t.Username, s.ItemID, s.AssetID, s.SkinName, s.FloatValue, l.AskingPrice 
-                FROM tradelisting l
-                JOIN trader t ON l.TraderID = t.TraderID
-                JOIN skinitem s ON l.ItemID = s.ItemID;
+                FROM TradeListing l
+                JOIN Trader t ON l.TraderID = t.TraderID
+                JOIN SkinItem s ON l.ItemID = s.ItemID;
             """
             cursor.execute(query)
             listings = cursor.fetchall()
             cursor.close()
             conn.close()
         except Exception as e:
-            st.error(f"Failed to load data structures from database: {e}")
+            st.error(f"Failed to load database structures: {e}")
             listings = []
 
     if listings:
@@ -224,13 +224,13 @@ if role == "User Mode":
                     if os.path.exists(img_path):
                         st.image(img_path, use_container_width=True)
                     else:
-                        st.warning("⚠️ Screenshot File Missing")
+                        st.warning("⚠️ Image Missing")
                 
                 # Structured Components Section
                 with col2:
                     st.subheader(item['SkinName'])
                     st.write(f"👤 **Seller:** {item['Username']}")
-                    st.write(f"📉 **Wear Float Value:** `{float(item['FloatValue']):.5f}`")
+                    st.write(f"📉 **Wear Float:** {float(item['FloatValue']):.5f}")
                     st.metric(label="Price (RM)", value=f"RM {float(item['AskingPrice']):,.2f}")
                 
                 # Semi-Structured Component Check: Fetch metadata attributes via JSON key
@@ -243,7 +243,7 @@ if role == "User Mode":
                         stickers = custom_details.get("stickers", [])
                         if stickers:
                             for stkr in stickers:
-                                st.caption(f"▪️ {stkr['name']} (Condition: {stkr['wear'] * 100:.0f}% worn, Value: ${stkr.get('value_usd', 0):,.2f})")
+                                st.caption(f"▪️ {stkr['name']} (Condition: {stkr['wear'] * 100:.0f}% worn)")
                         else:
                             st.write("*No stickers applied to this weapon asset.*")
                     else:
@@ -259,161 +259,161 @@ elif role == "Admin Mode":
         st.info("🔒 Please enter the correct **Admin Passkey** in the sidebar to view platform reports.")
     else:
         st.header("📊 Admin Mode: Platform Analytical Dashboard")
-    
-    # Let admin select between the two admin reports
-    admin_tab = st.selectbox("Select Report Module:", ["Report 2: Completed Transactions Ledger", "Report 3: Trader Performance & Volumetric Analysis"])
-    st.write("---")
-    
-    # -------------------- REPORT 2: COMPLETED TRANSACTIONS LEDGER --------------------
-    if admin_tab == "Report 2: Completed Transactions Ledger":
-        st.subheader("Platform Transaction Ledger & Sales History")
-        st.write("This report compiles structured transaction tables enriched dynamically with semi-structured nametag modifications and unstructured screenshot availability audits.")
         
-        df_report = pd.DataFrame()
+        # Let admin select between the two admin reports
+        admin_tab = st.selectbox("Select Report Module:", ["Report 2: Completed Transactions Ledger", "Report 3: Trader Performance & Volumetric Analysis"])
+        st.write("---")
         
-        if use_mock:
-            df_report = pd.DataFrame(MOCK_TRANSACTIONS)
-        else:
-            try:
-                conn = get_db_connection()
-                # Structured component: joining 4 entities (transactionitem, tradetransaction, trader, skinitem)
-                report_query = """
-                    SELECT ti.TransactionID, t.Username as BuyerName, s.SkinName, s.AssetID, ti.LinePrice, tr.TimeCompleted
-                    FROM transactionitem ti
-                    JOIN tradetransaction tr ON ti.TransactionID = tr.TransactionID
-                    JOIN trader t ON tr.BuyerID = t.TraderID
-                    JOIN skinitem s ON ti.ItemID = s.ItemID;
-                """
-                df_report = pd.read_sql(report_query, conn)
-                conn.close()
-            except Exception as e:
-                st.error(f"Error compiling transactional report: {e}")
-                df_report = pd.DataFrame()
-
-        if not df_report.empty:
-            # Enforce string representations for lookups
-            df_report['AssetID'] = df_report['AssetID'].astype(str)
+        # -------------------- REPORT 2: COMPLETED TRANSACTIONS LEDGER --------------------
+        if admin_tab == "Report 2: Completed Transactions Ledger":
+            st.subheader("Report 1: Platform Trading Analysis & Ledger Profiles")
+            st.write("This report compiles structured transaction tables enriched dynamically with semi-structured nametag modifications and unstructured screenshot availability audits.")
             
-            # Hybrid Data Enrichment Steps
-            # 1. Parse JSON semi-structured nametag
-            df_report['Custom Nametag'] = df_report['AssetID'].apply(
-                lambda x: json_store.get(x, {}).get('custom_nametag', 'None')
-            )
-            # 2. Check Unstructured folder screenshot file status
-            df_report['Screenshot Present'] = df_report['AssetID'].apply(
-                lambda x: "Yes" if os.path.exists(f"data_store/screenshots/{x}.png") else "No"
-            )
+            df_report = pd.DataFrame()
             
-            # Sidebar interactive filtering and sorting (Task II-B)
-            st.write("#### Report Controls")
-            col_ctrl1, col_ctrl2 = st.columns(2)
-            with col_ctrl1:
-                max_price = float(df_report["LinePrice"].max())
-                price_filter = st.slider("Filter results by maximum transaction item price (RM):", 0.0, max_price, max_price)
-            with col_ctrl2:
-                sort_order = st.selectbox("Sort records chronologically by timestamp order:", ["Descending (Newest)", "Ascending (Oldest)"])
+            if use_mock:
+                df_report = pd.DataFrame(MOCK_TRANSACTIONS)
+            else:
+                try:
+                    conn = get_db_connection()
+                    # Structured component: joining 4 entities (TransactionItem, TradeTransaction, Trader, SkinItem)
+                    report_query = """
+                        SELECT ti.TransactionID, t.Username as BuyerName, s.SkinName, s.AssetID, ti.LinePrice, tr.TimeCompleted
+                        FROM TransactionItem ti
+                        JOIN TradeTransaction tr ON ti.TransactionID = tr.TransactionID
+                        JOIN Trader t ON tr.BuyerID = t.TraderID
+                        JOIN SkinItem s ON ti.ItemID = s.ItemID;
+                    """
+                    df_report = pd.read_sql(report_query, conn)
+                    conn.close()
+                except Exception as e:
+                    st.error(f"Error compiling administrative reports: {e}")
+                    df_report = pd.DataFrame()
 
-            # Filter data array matrix
-            filtered_df = df_report[df_report["LinePrice"] <= price_filter]
+            if not df_report.empty:
+                # Enforce string representations for lookups
+                df_report['AssetID'] = df_report['AssetID'].astype(str)
+                
+                # Hybrid Data Enrichment Steps
+                # 1. Parse JSON semi-structured nametag
+                df_report['Custom Nametag'] = df_report['AssetID'].apply(
+                    lambda x: json_store.get(x, {}).get('custom_nametag', 'None')
+                )
+                # 2. Check Unstructured folder screenshot file status
+                df_report['Screenshot Present'] = df_report['AssetID'].apply(
+                    lambda x: "Yes" if os.path.exists(f"data_store/screenshots/{x}.png") else "No"
+                )
+                
+                # Sidebar interactive filtering and sorting (Task II-B)
+                st.write("#### Report Controls")
+                col_ctrl1, col_ctrl2 = st.columns(2)
+                with col_ctrl1:
+                    max_price = float(df_report["LinePrice"].max())
+                    price_filter = st.slider("Filter results by maximum transaction item price:", 0.0, max_price, max_price)
+                with col_ctrl2:
+                    sort_order = st.selectbox("Sort records chronologically by timestamp order:", ["Descending (Newest)", "Ascending (Oldest)"])
+
+                # Filter data array matrix
+                filtered_df = df_report[df_report["LinePrice"] <= price_filter]
+                
+                # Sort data array matrix
+                ascending_bool = True if sort_order == "Ascending (Oldest)" else False
+                filtered_df = filtered_df.sort_values(by="TimeCompleted", ascending=ascending_bool)
+
+                # Display final combined report
+                st.write("#### Compiled Records")
+                st.dataframe(filtered_df, use_container_width=True)
+
+                # Task II-C: Export function to standard CSV
+                csv_bytes = filtered_df.to_csv(index=False).encode('utf-8')
+                st.download_button(
+                    label="📥 Export Report to CSV Format",
+                    data=csv_bytes,
+                    file_name="cs_nexus_transaction_report.csv",
+                    mime="text/csv"
+                )
+            else:
+                st.info("The system transaction logs do not contain any recorded histories yet.")
+
+        # -------------------- REPORT 3: TRADER PERFORMANCE REPORT --------------------
+        elif admin_tab == "Report 3: Trader Performance & Volumetric Analysis":
+            st.subheader("Trader Performance & Inventory Auditing Ledger")
+            st.write("This report compiles structured stats tables joined with listing counts, and aggregates JSON customizations (sticker count) and file audits (screenshot ratio) per user.")
             
-            # Sort data array matrix
-            ascending_bool = True if sort_order == "Ascending (Oldest)" else False
-            filtered_df = filtered_df.sort_values(by="TimeCompleted", ascending=ascending_bool)
-
-            # Display final combined report
-            st.write("#### Compiled Records")
-            st.dataframe(filtered_df, use_container_width=True)
-
-            # Task II-C: Export function to standard CSV
-            csv_bytes = filtered_df.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Export Report to CSV Format",
-                data=csv_bytes,
-                file_name="cs_nexus_transaction_report.csv",
-                mime="text/csv"
-            )
-        else:
-            st.info("The system transaction logs do not contain any recorded histories yet.")
-
-    # -------------------- REPORT 3: TRADER PERFORMANCE REPORT --------------------
-    elif admin_tab == "Report 3: Trader Performance & Volumetric Analysis":
-        st.subheader("Trader Performance & Inventory Auditing Ledger")
-        st.write("This report compiles structured stats tables joined with listing counts, and aggregates JSON customizations (sticker count) and file audits (screenshot ratio) per user.")
-        
-        df_trader = pd.DataFrame()
-        
-        if use_mock:
-            df_trader = pd.DataFrame(MOCK_TRADERS)
-        else:
-            try:
-                conn = get_db_connection()
-                # Structured component: joining 3 entities (trader, traderstats, tradelisting count)
-                trader_query = """
-                    SELECT t.TraderID, t.Username, t.SteamID64, ts.TotalTrades, ts.LastActive, COUNT(l.ListingID) as ActiveListings, s.AssetID
-                    FROM trader t
-                    LEFT JOIN traderstats ts ON t.TraderID = ts.TraderID
-                    LEFT JOIN tradelisting l ON t.TraderID = l.TraderID
-                    LEFT JOIN skinitem s ON l.ItemID = s.ItemID
-                    GROUP BY t.TraderID, t.Username, t.SteamID64, ts.TotalTrades, ts.LastActive, s.AssetID;
-                """
-                # Note: We query AssetID to help aggregate lookup values in pandas
-                df_trader = pd.read_sql(trader_query, conn)
-                conn.close()
-            except Exception as e:
-                st.error(f"Error compiling trader reports: {e}")
-                df_trader = pd.DataFrame()
-
-        if not df_trader.empty:
-            # Fill missing entries
-            df_trader['ActiveListings'] = df_trader['ActiveListings'].fillna(0).astype(int)
-            df_trader['TotalTrades'] = df_trader['TotalTrades'].fillna(0).astype(int)
-            df_trader['LastActive'] = df_trader['LastActive'].fillna("N/A")
+            df_trader = pd.DataFrame()
             
-            # Hybrid Data Enrichment:
-            # 1. Check custom JSON stickers applied to trader active listings
-            def get_sticker_count(asset_id):
-                if pd.isna(asset_id):
-                    return 0
-                asset_str = str(int(float(asset_id)))
-                return len(json_store.get(asset_str, {}).get('stickers', []))
+            if use_mock:
+                df_trader = pd.DataFrame(MOCK_TRADERS)
+            else:
+                try:
+                    conn = get_db_connection()
+                    # Structured component: joining 3 entities (Trader, TraderStats, TradeListing count)
+                    trader_query = """
+                        SELECT t.TraderID, t.Username, t.SteamID64, ts.TotalTrades, ts.LastActive, COUNT(l.ListingID) as ActiveListings, s.AssetID
+                        FROM Trader t
+                        LEFT JOIN TraderStats ts ON t.TraderID = ts.TraderID
+                        LEFT JOIN TradeListing l ON t.TraderID = l.TraderID
+                        LEFT JOIN SkinItem s ON l.ItemID = s.ItemID
+                        GROUP BY t.TraderID, t.Username, t.SteamID64, ts.TotalTrades, ts.LastActive, s.AssetID;
+                    """
+                    # Note: We query AssetID to help aggregate lookup values in pandas
+                    df_trader = pd.read_sql(trader_query, conn)
+                    conn.close()
+                except Exception as e:
+                    st.error(f"Error compiling trader reports: {e}")
+                    df_trader = pd.DataFrame()
 
-            df_trader['Sticker Modifications'] = df_trader['AssetID'].apply(get_sticker_count)
+            if not df_trader.empty:
+                # Fill missing entries
+                df_trader['ActiveListings'] = df_trader['ActiveListings'].fillna(0).astype(int)
+                df_trader['TotalTrades'] = df_trader['TotalTrades'].fillna(0).astype(int)
+                df_trader['LastActive'] = df_trader['LastActive'].fillna("N/A")
+                
+                # Hybrid Data Enrichment:
+                # 1. Check custom JSON stickers applied to trader active listings
+                def get_sticker_count(asset_id):
+                    if pd.isna(asset_id):
+                        return 0
+                    asset_str = str(int(float(asset_id)))
+                    return len(json_store.get(asset_str, {}).get('stickers', []))
 
-            # 2. Check screenshot file availability in folders
-            def check_screenshot_present(asset_id):
-                if pd.isna(asset_id):
-                    return "No Listing"
-                asset_str = str(int(float(asset_id)))
-                return "Uploaded" if os.path.exists(f"data_store/screenshots/{asset_str}.png") else "Missing"
+                df_trader['Sticker Modifications'] = df_trader['AssetID'].apply(get_sticker_count)
 
-            df_trader['Screenshots Status'] = df_trader['AssetID'].apply(check_screenshot_present)
+                # 2. Check screenshot file availability in folders
+                def check_screenshot_present(asset_id):
+                    if pd.isna(asset_id):
+                        return "No Listing"
+                    asset_str = str(int(float(asset_id)))
+                    return "Uploaded" if os.path.exists(f"data_store/screenshots/{asset_str}.png") else "Missing"
 
-            # Group duplicates if SQL returns multiple listings per trader
-            df_trader_grouped = df_trader.groupby(['TraderID', 'Username', 'SteamID64', 'TotalTrades', 'LastActive']).agg({
-                'ActiveListings': 'sum',
-                'Sticker Modifications': 'sum',
-                'Screenshots Status': lambda x: ", ".join(set(x))
-            }).reset_index()
+                df_trader['Screenshots Status'] = df_trader['AssetID'].apply(check_screenshot_present)
 
-            # Filters & Controls
-            st.write("#### Report Controls")
-            min_trades = st.number_input("Minimum Completed Trades Filter:", min_value=0, value=0)
-            sort_by_column = st.selectbox("Sort table rows by field:", ["TotalTrades", "ActiveListings", "Username"])
-            
-            filtered_traders = df_trader_grouped[df_trader_grouped["TotalTrades"] >= min_trades]
-            filtered_traders = filtered_traders.sort_values(by=sort_by_column, ascending=False if sort_by_column != "Username" else True)
+                # Group duplicates if SQL returns multiple listings per trader
+                df_trader_grouped = df_trader.groupby(['TraderID', 'Username', 'SteamID64', 'TotalTrades', 'LastActive']).agg({
+                    'ActiveListings': 'sum',
+                    'Sticker Modifications': 'sum',
+                    'Screenshots Status': lambda x: ", ".join(set(x))
+                }).reset_index()
 
-            # Display final combined report
-            st.write("#### Trader Performance Records")
-            st.dataframe(filtered_traders, use_container_width=True)
+                # Filters & Controls
+                st.write("#### Report Controls")
+                min_trades = st.number_input("Minimum Completed Trades Filter:", min_value=0, value=0)
+                sort_by_column = st.selectbox("Sort table rows by field:", ["TotalTrades", "ActiveListings", "Username"])
+                
+                filtered_traders = df_trader_grouped[df_trader_grouped["TotalTrades"] >= min_trades]
+                filtered_traders = filtered_traders.sort_values(by=sort_by_column, ascending=False if sort_by_column != "Username" else True)
 
-            # CSV download button for Report 3
-            csv_bytes = filtered_traders.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Export Report 3 to CSV Format",
-                data=csv_bytes,
-                file_name="cs_nexus_trader_performance_report.csv",
-                mime="text/csv"
-            )
-        else:
-            st.info("No trader profiling logs found in database.")
+                # Display final combined report
+                st.write("#### Trader Performance Records")
+                st.dataframe(filtered_traders, use_container_width=True)
+
+                # CSV download button for Report 3
+                csv_bytes = filtered_traders.to_csv(index=False).encode('utf-8')
+                st.download_button(
+                    label="📥 Export Report 3 to CSV Format",
+                    data=csv_bytes,
+                    file_name="cs_nexus_trader_performance_report.csv",
+                    mime="text/csv"
+                )
+            else:
+                st.info("No trader profiling logs found in database.")
