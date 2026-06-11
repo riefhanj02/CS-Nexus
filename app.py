@@ -589,9 +589,8 @@ else:
 
 st.sidebar.info(f"Current Access Level: **{role if admin_authenticated else 'Unauthenticated'}**")
 
-# ==================== USER MODE ====================
-if role == "User Mode":
-    st.header("🛒 User Mode: Active Showcase Dashboard")
+# Helper function to render Report 1 (Active Listings Catalog)
+def render_report_1():
     st.subheader("Report 1: Active Listings Catalog")
     st.write("This report compiles real-time extraction across all three data representations simultaneously (structured tables, JSON stickers, and local screenshot imagery files).")
     st.write("---")
@@ -662,6 +661,11 @@ if role == "User Mode":
     else:
         st.info("No active listings currently populated in the database tables.")
 
+# ==================== USER MODE ====================
+if role == "User Mode":
+    st.header("🛒 User Mode: Active Showcase Dashboard")
+    render_report_1()
+
 # ==================== ADMIN MODE ====================
 elif role == "Admin Mode":
     if not admin_authenticated:
@@ -670,13 +674,21 @@ elif role == "Admin Mode":
     else:
         st.header("📊 Admin Mode: Platform Analytical Dashboard")
         
-        # Let admin select between the two admin reports
-        admin_tab = st.selectbox("Select Report Module:", ["Report 2: Completed Transactions Ledger", "Report 3: Trader Performance & Volumetric Analysis"])
+        # Let admin select between the three reports
+        admin_tab = st.selectbox("Select Report Module:", [
+            "Report 1: Active Listings Catalog",
+            "Report 2: Completed Transactions Ledger",
+            "Report 3: Trader Performance & Volumetric Analysis"
+        ])
         st.write("---")
         
+        # -------------------- REPORT 1: ACTIVE LISTINGS CATALOG --------------------
+        if admin_tab == "Report 1: Active Listings Catalog":
+            render_report_1()
+            
         # -------------------- REPORT 2: COMPLETED TRANSACTIONS LEDGER --------------------
-        if admin_tab == "Report 2: Completed Transactions Ledger":
-            st.subheader("Report 1: Platform Trading Analysis & Ledger Profiles")
+        elif admin_tab == "Report 2: Completed Transactions Ledger":
+            st.subheader("Report 2: Completed Transactions Ledger")
             st.write("This report compiles structured transaction tables enriched dynamically with semi-structured nametag modifications and unstructured screenshot availability audits.")
             
             df_report = pd.DataFrame()
@@ -747,7 +759,7 @@ elif role == "Admin Mode":
 
         # -------------------- REPORT 3: TRADER PERFORMANCE REPORT --------------------
         elif admin_tab == "Report 3: Trader Performance & Volumetric Analysis":
-            st.subheader("Trader Performance & Inventory Auditing Ledger")
+            st.subheader("Report 3: Trader Performance & Volumetric Analysis")
             st.write("This report compiles structured stats tables joined with listing counts, and aggregates JSON customizations (sticker count) and file audits (screenshot ratio) per user.")
             
             df_trader = pd.DataFrame()
